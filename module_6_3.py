@@ -24,7 +24,7 @@ class Animal:
     def attack(self):
         if self._DEGREE_OF_DANGER < 5:
             print("Sorry, i'm peaceful :)")
-        elif self._DEGREE_OF_DANGER == 5 or self._DEGREE_OF_DANGER > 5:
+        elif self._DEGREE_OF_DANGER >= 5:
             print("Be careful, i'm attacking you 0_0")
 
     def speak(self):
@@ -41,8 +41,11 @@ class AquaticAnimal(Animal):
         super().__init__(speed)
 
     def dive_in(self, dz):
-        self.dz = abs(self.speed//2 *dz)
-        self._cords[2] = self.dz
+        dive_in_dz = self._cords[2] - abs(dz) * self.speed // 2
+        if dive_in_dz >= 0:
+            self._cords[2] = dive_in_dz
+        else:
+            print("Меньше нуля погружаться нельзя")
 
 class PoisonousAnimal(Animal):
     _DEGREE_OF_DANGER = 8
