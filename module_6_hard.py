@@ -1,5 +1,4 @@
 import math
-from webcolors import rgb_to_name
 
 
 class Figure:
